@@ -826,8 +826,7 @@ class Bitcoin::Script
     out_script.append_pushdata(raw_script[3])
     out_script.append_pushdata(raw_script[4])
     out_script.append_opcode(194)
-    arr = out_script.chunks
-    [ [arr[0], arr[1], arr[2], arr[3], arr[4], arr[5] ].join ].pack("H*")
+    pack_pushdata(out_script)
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
