@@ -823,7 +823,8 @@ class Bitcoin::Script
     a6 = from_string("c2")
     puts a6
     #out_data << a0 << a1 << a2 << a3 << a4 << a5 << a6
-    pack_pushdata([a6].pack("H*"))
+    to_witness_script(0, a6)
+    #pack_pushdata([a6].pack("H*"))
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
