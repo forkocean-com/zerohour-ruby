@@ -119,6 +119,12 @@ class Bitcoin::Script
 
   OP_INVALIDOPCODE = 0xff
 
+  // Tokens
+  OP_CREATE = 0xc1
+  OP_CALL = 0xc2
+  OP_SPEND = 0xc3
+  OP_SENDER = 0xc4
+
   OPCODES = Hash[*constants.grep(/^OP_/).map{|i| [const_get(i), i.to_s] }.flatten]
   OPCODES[0] = "0"
   OPCODES[81] = "1"
