@@ -826,7 +826,7 @@ class Bitcoin::Script
     out_script.append_pushdata(raw_script[3])
     out_script.append_pushdata(raw_script[4])
     out_script.append_opcode(194)
-    Bitcoin::Script.binary_from_string(b.to_binary).unpack("H*")
+    Bitcoin::Script.binary_from_string(out_script.to_binary).unpack("H*")
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
