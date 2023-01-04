@@ -733,6 +733,7 @@ class Bitcoin::Script
 
   # get the data possibly included in an OP_RETURN script
   def get_op_return_data
+    puts "get_opt_return_data"
     return nil  unless is_op_return?
     cast_to_string(@chunks[1]).unpack("H*")[0]  if @chunks[1]
   end
@@ -761,12 +762,14 @@ class Bitcoin::Script
   # generate pubkey tx script for given +pubkey+. returns a raw binary script of the form:
   #  <pubkey> OP_CHECKSIG
   def self.to_pubkey_script(pubkey)
+    puts "to_pubkey_script"
     pack_pushdata([pubkey].pack("H*")) + [ OP_CHECKSIG ].pack("C")
   end
 
   # generate hash160 tx for given +address+. returns a raw binary script of the form:
   #  OP_DUP OP_HASH160 <hash160> OP_EQUALVERIFY OP_CHECKSIG
   def self.to_hash160_script(hash160)
+    puts "to_hash160_script"
     return nil  unless hash160
     #  DUP   HASH160  length  hash160    EQUALVERIFY  CHECKSIG
     [ ["76", "a9",    "14",   hash160,   "88",        "ac"].join ].pack("H*")
@@ -800,6 +803,7 @@ class Bitcoin::Script
   # generate p2wsh output script for given +p2sh+ sha256. returns a raw binary script of the form:
   # 0 <p2sh>
   def self.to_witness_p2sh_script(p2sh)
+    puts "to_witness_p2sh_script"
     return nil  unless p2sh
     to_witness_script(0, p2sh)
   end
@@ -819,6 +823,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
+    puts "to_call_script"
     data
   end
 
