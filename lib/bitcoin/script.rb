@@ -826,7 +826,7 @@ class Bitcoin::Script
     out_script.append_pushdata(raw_script[3])
     out_script.append_pushdata(raw_script[4])
     out_script.append_opcode(194)
-    Bitcoin::Script.to_witness_script(0, out_script.to_binary)
+    Bitcoin::Script.pack_pushdata(out_script.to_binary)
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
