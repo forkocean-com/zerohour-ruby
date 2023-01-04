@@ -819,7 +819,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    to_binary_without_signatures(data)
+    [data]
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
