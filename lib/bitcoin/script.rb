@@ -119,7 +119,7 @@ class Bitcoin::Script
 
   OP_INVALIDOPCODE = 0xff
 
-  // Tokens
+  # Tokens
   OP_CREATE = 0xc1
   OP_CALL = 0xc2
   OP_SPEND = 0xc3
