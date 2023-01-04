@@ -762,12 +762,14 @@ class Bitcoin::Script
   # generate pubkey tx script for given +pubkey+. returns a raw binary script of the form:
   #  <pubkey> OP_CHECKSIG
   def self.to_pubkey_script(pubkey)
+    puts "to_pubkey_script"
     pack_pushdata([pubkey].pack("H*")) + [ OP_CHECKSIG ].pack("C")
   end
 
   # generate hash160 tx for given +address+. returns a raw binary script of the form:
   #  OP_DUP OP_HASH160 <hash160> OP_EQUALVERIFY OP_CHECKSIG
   def self.to_hash160_script(hash160)
+    puts "to_hash160_script"
     return nil unless hash160
     #  DUP   HASH160  length  hash160    EQUALVERIFY  CHECKSIG
     [ ["76", "a9",    "14",   hash160,   "88",        "ac"].join ].pack("H*")
@@ -776,6 +778,7 @@ class Bitcoin::Script
   # generate p2sh output script for given +p2sh+ hash160. returns a raw binary script of the form:
   #  OP_HASH160 <p2sh> OP_EQUAL
   def self.to_p2sh_script(p2sh)
+    puts "to_p2sh_script"
     return nil  unless p2sh
     # HASH160  length  hash  EQUAL
     [ ["a9",   "14",   p2sh, "87"].join ].pack("H*")
@@ -785,6 +788,7 @@ class Bitcoin::Script
   # +witness_program+. returns a raw binary script of the form:
   # <witness_version> <witness_program>
   def self.to_witness_script(witness_version, witness_program_hex)
+    puts "to_witness_script"
     return nil unless (0..16).include?(witness_version)
     return nil unless witness_program_hex
     version = witness_version != 0 ? 0x50 + witness_version : 0 # 0x50 for OP_1.. codes
@@ -794,6 +798,7 @@ class Bitcoin::Script
   # generate p2wpkh tx for given +address+. returns a raw binary script of the form:
   # 0 <hash160>
   def self.to_witness_hash160_script(hash160)
+    puts "to_witness_hash160_script"
     return nil  unless hash160
     to_witness_script(0, hash160)
   end
@@ -801,6 +806,7 @@ class Bitcoin::Script
   # generate p2wsh output script for given +p2sh+ sha256. returns a raw binary script of the form:
   # 0 <p2sh>
   def self.to_witness_p2sh_script(p2sh)
+    puts "to_witness_p2sh_script"
     return nil  unless p2sh
     to_witness_script(0, p2sh)
   end
@@ -808,6 +814,7 @@ class Bitcoin::Script
   # generate hash160 or p2sh output script, depending on the type of the given +address+.
   # see #to_hash160_script and #to_p2sh_script.
   def self.to_address_script(address)
+    puts "to_address_script"
     hash160 = Bitcoin.hash160_from_address(address)
     case Bitcoin.address_type(address)
     when :hash160; to_hash160_script(hash160)
