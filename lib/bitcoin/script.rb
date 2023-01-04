@@ -820,12 +820,12 @@ class Bitcoin::Script
   # for tokens
   def self.to_call_script(data)
     raw_script = data.split(" ")
-    a0 = raw_script[0].pack("H*")
-    a1 = raw_script[1].pack("H*")
-    a3 = raw_script[3].pack("H*")
-    a4 = raw_script[4].pack("H*")
-    a5 = raw_script[5].pack("H*")
-    a6 = "c2".pack("H*")
+    a0 = [raw_script[0]].pack("H*")
+    a1 = [raw_script[1]].pack("H*")
+    a3 = [raw_script[3]].pack("H*")
+    a4 = [raw_script[4]].pack("H*")
+    a5 = [raw_script[5]].pack("H*")
+    a6 = ["c2"].pack("H*")
     out_data << a0 << a1 << a2 << a3 << a4 << a5 << a6
     pack_pushdata(out_data)
   end
