@@ -821,11 +821,11 @@ class Bitcoin::Script
   def self.to_call_script(data)
     out_script = Bitcoin::Script.new("")
     raw_script = data.split(" ")
-    out_script.append_pushdata(raw_script[0]))
-    out_script.append_pushdata(raw_script[1]))
-    out_script.append_pushdata(raw_script[2]))
-    out_script.append_pushdata(raw_script[3]))
-    out_script.append_pushdata(raw_script[4]))
+    out_script.append_pushdata(raw_script[0])
+    out_script.append_pushdata(raw_script[1])
+    out_script.append_pushdata(raw_script[2])
+    out_script.append_pushdata(raw_script[3])
+    out_script.append_pushdata(raw_script[4])
     out_script.append_opcode(194)
     out_script
   end
