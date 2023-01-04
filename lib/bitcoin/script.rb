@@ -811,6 +811,11 @@ class Bitcoin::Script
     end
   end
 
+  # for tokens
+  def self.to_op_call_script(data)
+    data
+  end
+
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
   # returns a raw binary script of the form:
   #  <m> <pubkey> [<pubkey> ...] <n_pubkeys> OP_CHECKMULTISIG
