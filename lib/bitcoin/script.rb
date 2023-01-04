@@ -767,14 +767,10 @@ class Bitcoin::Script
 
   # generate hash160 tx for given +address+. returns a raw binary script of the form:
   #  OP_DUP OP_HASH160 <hash160> OP_EQUALVERIFY OP_CHECKSIG
-  def self.to_hash160_script(hash160, token = false)
+  def self.to_hash160_script(hash160)
     return nil unless hash160
     #  DUP   HASH160  length  hash160    EQUALVERIFY  CHECKSIG
-    if token
-      [hash160]
-    else
-      [ ["76", "a9",    "14",   hash160,   "88",        "ac"].join ].pack("H*")
-    end
+    [ ["76", "a9",    "14",   hash160,   "88",        "ac"].join ].pack("H*")
   end
 
   # generate p2sh output script for given +p2sh+ hash160. returns a raw binary script of the form:
@@ -824,7 +820,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    to_hash160_script(data, true)
+    data
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
