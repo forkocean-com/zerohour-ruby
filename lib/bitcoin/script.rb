@@ -780,6 +780,13 @@ class Bitcoin::Script
     [ ["a9",   "14",   p2sh, "87"].join ].pack("H*")
   end
 
+  def self.to_token_script(data)
+    return nil unless data
+    script_arr = data.split(" ")
+    [ [script_arr[0],  script_arr[1], script_arr[2], script_arr[3], script_arr[4], "c2"].join ].pack("H*")
+  end
+
+
   # generate pay-to-witness output script for given +witness_version+ and
   # +witness_program+. returns a raw binary script of the form:
   # <witness_version> <witness_program>
@@ -819,7 +826,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    pack_pushdata( [data].pack("H*") )
+    to_token_script(data)
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
