@@ -773,13 +773,6 @@ class Bitcoin::Script
     [ ["76", "a9",    "14",   hash160,   "88",        "ac"].join ].pack("H*")
   end
 
-  def self.to_hash160_script_token(hash160)
-    return nil unless hash160
-    #  DUP   HASH160  length  hash160    EQUALVERIFY  CHECKSIG
-    [ [hash160,   "0xc2"].join ].pack("H*")
-  end
-
-
   # generate p2sh output script for given +p2sh+ hash160. returns a raw binary script of the form:
   #  OP_HASH160 <p2sh> OP_EQUAL
   def self.to_p2sh_script(p2sh)
@@ -827,8 +820,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    to_hash160_script_token(data)
-    #to_witness_script(0, data)
+    to_witness_script(0, data)
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
