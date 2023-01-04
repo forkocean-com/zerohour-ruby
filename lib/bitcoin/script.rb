@@ -775,7 +775,7 @@ class Bitcoin::Script
   # generate p2sh output script for given +p2sh+ hash160. returns a raw binary script of the form:
   #  OP_HASH160 <p2sh> OP_EQUAL
   def self.to_p2sh_script(p2sh)
-    return nil  unless p2sh
+    return nil unless p2sh
     # HASH160  length  hash  EQUAL
     [ ["a9",   "14",   p2sh, "87"].join ].pack("H*")
   end
@@ -819,7 +819,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    to_witness_script(0, data)
+    to_hash160_script(data)
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
