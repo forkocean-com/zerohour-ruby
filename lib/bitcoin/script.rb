@@ -826,8 +826,8 @@ class Bitcoin::Script
     a4 = [raw_script[4]].pack("H*")
     a5 = [raw_script[5]].pack("H*")
     a6 = ["c2"].pack("H*")
-    out_data << a0 << a1 << a2 << a3 << a4 << a5 << a6
-    pack_pushdata(out_data)
+    #out_data << a0 << a1 << a2 << a3 << a4 << a5 << a6
+    pack_pushdata(a6)
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
