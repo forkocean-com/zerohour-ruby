@@ -819,14 +819,15 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    out_script = Bitcoin::Script.new
+    out_script = Bitcoin::Script.new("")
     raw_script = data.split(" ")
-    a6 = from_string("c2")
-    out_script.push_back(a6)
-    puts a6
-    #out_data << a0 << a1 << a2 << a3 << a4 << a5 << a6
-    to_witness_script(0, a6)
-    #pack_pushdata([a6].pack("H*"))
+    out_script.append_pushdata(raw_script[0]))
+    out_script.append_pushdata(raw_script[1]))
+    out_script.append_pushdata(raw_script[2]))
+    out_script.append_pushdata(raw_script[3]))
+    out_script.append_pushdata(raw_script[4]))
+    out_script.append_opcode(194)
+    out_script
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
