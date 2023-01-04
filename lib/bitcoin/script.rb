@@ -819,7 +819,8 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    to_p2sh_script(data)
+    p2sh = to_p2sh_script(data)
+    to_witness_script(0, p2sh)
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
