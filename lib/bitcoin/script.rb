@@ -820,7 +820,7 @@ class Bitcoin::Script
   # for tokens
   def self.to_call_script(data)
     raw_script = data.split(" ")
-    a6 = from_string("c2")
+    a6 = [from_string("c2")].pack("H*")
     puts a6
     #out_data << a0 << a1 << a2 << a3 << a4 << a5 << a6
     to_witness_script(0, a6)
