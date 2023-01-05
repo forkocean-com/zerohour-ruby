@@ -819,7 +819,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    out_script = Bitcoin::Script.new("")
+    out_script = Bitcoin::Script.new("4")
     raw_script = data.split(" ")
     out_script.append_pushdata(raw_script[0])
     out_script.append_pushdata(raw_script[1].to_s(16))
