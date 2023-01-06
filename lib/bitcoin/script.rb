@@ -819,10 +819,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    out_script = Bitcoin::Script.new("")
-    out_script.append_pushdata(data)
-    out_script.append_opcode(194)
-    [out_script.to_payload].pack("H*")
+    [data].pack("H*")
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
