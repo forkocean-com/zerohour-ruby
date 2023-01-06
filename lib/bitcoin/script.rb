@@ -819,8 +819,7 @@ class Bitcoin::Script
 
   # for tokens
   def self.to_call_script(data)
-    to_witness_script(0, data)
-    #[data].pack("H*")
+    pack_pushdata([data].pack("H*"))
   end
 
   # generate multisig output script for given +pubkeys+, expecting +m+ signatures.
