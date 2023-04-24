@@ -616,7 +616,8 @@ module Bitcoin
       end
 
       def coinbase?
-        inputs.size == 1 && inputs.first.coinbase? or inputs.first['value'] == 0
+	puts inputs.first
+        inputs.size == 1 && inputs.first.coinbase?
       end
 
       def normalized_hash
