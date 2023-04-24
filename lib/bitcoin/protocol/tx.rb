@@ -616,7 +616,6 @@ module Bitcoin
       end
 
       def coinbase?
-	puts inputs.first.to_json
         inputs.size == 1 && inputs.first.coinbase?
       end
 
