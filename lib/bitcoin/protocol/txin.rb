@@ -95,11 +95,11 @@ module Bitcoin
 
       def to_hash(_options = {})
         t = { 'prev_out' => { 'hash' => @prev_out_hash.reverse_hth, 'n' => @prev_out_index } }
-        if coinbase?
+        #if coinbase?
           t['coinbase']  = @script_sig.unpack('H*')[0]
-        else # coinbase tx
-          t['scriptSig'] = Bitcoin::Script.new(@script_sig).to_string
-        end
+        #else # coinbase tx
+        #  t['scriptSig'] = Bitcoin::Script.new(@script_sig).to_string
+        #end
         t['sequence'] = @sequence.unpack('V')[0] unless @sequence == "\xff\xff\xff\xff"
         t['witness'] = @script_witness.stack.map(&:bth) unless @script_witness.empty?
         t
