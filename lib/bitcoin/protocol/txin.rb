@@ -130,7 +130,6 @@ module Bitcoin
 
       # check if input is coinbase
       def coinbase?
-	puts "COIN: " + self.to_json
         (@prev_out_index == COINBASE_INDEX) && (@prev_out_hash == NULL_HASH)
       end
 
